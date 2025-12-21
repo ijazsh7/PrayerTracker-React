@@ -1,0 +1,393 @@
+
+.btn {
+  background-color: #006e4d; /* Primary button color */
+  color: #fff; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 20px; /* Adjust spacing inside the button */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+.btn:hover {
+  background-color: #a5f0af; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.btn:active {
+  transform: scale(0.95); /* Shrink when clicked */
+}
+
+/* General body styles */
+body {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  background-color: #f2f5d2; /* Background color */
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Space between the left and right sections */
+  align-items: center; /* Center items vertically */
+  background-color: yellow; /* Adjust as needed */
+  padding: 10px 20px;
+
+}
+
+.navbar .logo {
+  cursor: pointer;
+  font-size: 1.5rem; /* Adjust size for "Prayer Tracker" */
+  font-weight: bold;
+  color: green; /* Adjust color as needed */
+}
+
+.navbar .menu {
+  display: flex;
+  gap: 15px; /* Spacing between menu items */
+}
+
+.navbar .menu a {
+  text-decoration: none;
+  color: green; /* Adjust color for links */
+  font-weight: bold;
+}
+
+.navbar .menu a:hover {
+  text-decoration: underline; /* Optional hover effect */
+}
+
+/* Interface styles */
+.interface {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.interface h1 {
+  font-size: 2.5rem;
+  color: #006e4d; /* Primary heading color */
+  margin-bottom: 20px;
+}
+
+.interface p {
+  font-size: 1.2rem;
+  color: #000000; /* Paragraph text color */
+}
+/* How It Works Section */
+.how-it-works {
+  margin: 80px auto;
+  text-align: center;
+  max-width: 800px;
+}
+
+.how-it-works h2 {
+  font-size: 2rem;
+  color: #006e4d;
+  margin-bottom: 20px;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Wrap for responsiveness */
+}
+
+/* Step hover effect */
+/* General Step Styles */
+/* General styling for all steps */
+.step {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Ensures consistent pointer cursor */
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Ensures the color matches the parent */
+}
+
+/* Hover effect */
+.step:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: #e6ffe6;
+}
+
+/* Styling for headings in steps */
+.step h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #006e4d;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.step:hover h3 {
+  color: #004c36;
+}
+
+/* Styling for paragraphs in steps */
+.step p {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* Ensure no underline for links in .step */
+.step a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Icons in steps */
+.step svg {
+  margin-bottom: 15px;
+}
+
+/* Remove underline for links in steps */
+.step a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+}
+
+/* Uniform pointer for all steps */
+.step {
+  cursor: pointer; /* Ensure consistent pointer cursor */
+}
+
+
+/* Features Section */
+.features {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2rem;
+  color: #006e4d;
+  margin-bottom: 20px;
+}
+
+.features-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Wrap for responsiveness */
+}
+
+/* Feature card hover effect */
+.feature-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #006e4d;
+  margin-bottom: 10px;
+  transition: color 0.2s ease;
+}
+
+.feature-card:hover h3 {
+  color: #004c36; /* Darker shade on hover */
+}
+
+.feature-card p {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+
+.step svg, .feature-card svg {
+  margin-bottom: 15px;
+}
+
+.step img, .feature-card img {
+  width: 60px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+footer {
+  text-align: center;
+  padding: 10px 0;
+}
+
+
+/* General styles for Dashboard */
+.dashboard-container {
+  padding: 30px;
+  font-family: 'Times New Roman', Times, serif; /* Updated font for a modern look */
+  color: #333;
+  text-align: center; /* Ensures alignment consistency */
+}
+
+/* Title */
+.dashboard-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #006400; /* Merged color for a consistent green shade */
+}
+
+
+/* Daily Prayers Progress */
+.daily-progress {
+  margin-bottom: 30px;
+}
+
+
+.daily-progress h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #006400; /* Consistent green shade */
+}
+
+.prayer-list {
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.1rem; /* Unified font size */
+}
+
+.prayer-list li {
+  margin: 5px 0;
+}
+
+/* Missed (Qaza) Prayers Summary */
+.qaza-summary {
+  margin-bottom: 30px;
+}
+
+.qaza-summary h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #006400;
+}
+
+.qaza-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.qaza-table th,
+.qaza-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.qaza-table th {
+  background-color: #006400;
+  color: #fff;
+}
+
+.qaza-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Dashboard Stats (Cards Section) */
+.dashboard-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.prayer-table-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.prayer-table {
+  width: 60%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.prayer-table th, .prayer-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.prayer-table th {
+  background-color: #f8f9fa;
+  font-size: 18px;
+}
+
+.prayer-table td {
+  font-size: 16px;
+}
+
+.btn-complete, .btn-missed {
+  padding: 8px 12px;
+  margin: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-complete {
+  background-color: #fcfc70;
+  color: rgb(0, 0, 0);
+}
+
+.btn-missed {
+  background-color: #fcfc70;
+  color: rgb(0, 0, 0);
+}
+
+.chart-container {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .steps-container, .features-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align for better aesthetics */
+  }
+
+  .step, .feature-card {
+    max-width: 90%; /* Reduce width for small screens */
+    margin-bottom: 20px; /* Add spacing between cards */
+  }
+
+  .hero {
+    padding: 20px; /* Reduce padding for smaller screens */
+  }
+
+  .hero h1 {
+    font-size: 1.8rem; /* Reduce font size for smaller screens */
+  }
+
+  .hero p {
+    font-size: 1rem; /* Adjust paragraph font size */
+  }
+
+  .btn {
+    width: 100%; /* Make the button full-width */
+  }
+}
+@media (max-width: 768px) {
+  .dashboard-stats {
+      grid-template-columns: 1fr;
+  }
+  .card {
+      margin-bottom: 20px;
+  }
+}
