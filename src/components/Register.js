@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Register = () => {
     // State to manage form data and error messages
     const [formData, setFormData] = useState({
@@ -63,7 +65,7 @@ const Register = () => {
 
             // call .net web api to register after validation is successful
             try {
-                const response = await fetch("https://localhost:7281/api/Auth/register", {
+                const response = await fetch(`${API_BASE_URL}/api/Auth/register`, {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({

@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPray, faChartBar } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [prayerGuidanceList, setPrayerGuidanceList] = useState([]);
@@ -14,7 +16,7 @@ const Home = () => {
 
     const fetchUserSession = async () => {
         try {
-            const response = await fetch("https://localhost:7281/api/Auth/usersession", {
+            const response = await fetch(`${API_BASE_URL}/api/Auth/usersession`, {
                 method: "GET",
                 credentials: "include",
             });
@@ -37,7 +39,7 @@ const Home = () => {
 
     const fetchPrayerGuidance = async () => {
         try {
-            const response = await fetch("https://localhost:7281/api/PrayerGuidances", {
+            const response = await fetch(`${API_BASE_URL}/api/PrayerGuidances`, {
                 method: "GET",
             });
 

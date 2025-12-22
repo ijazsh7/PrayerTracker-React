@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const PrayerSummaryTable = ({ userId }) => {
     const [summary, setSummary] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -8,7 +10,7 @@ const PrayerSummaryTable = ({ userId }) => {
     useEffect(() => {
         if (!userId) return;
 
-        fetch(`https://localhost:7281/api/PrayerRecords/userprayerssummary/${userId}`)
+        fetch(`${API_BASE_URL}/api/PrayerRecords/userprayerssummary/${userId}`)
             .then(res => {
                 if (!res.ok) throw new Error("Failed to fetch prayer summary");
                 return res.json();

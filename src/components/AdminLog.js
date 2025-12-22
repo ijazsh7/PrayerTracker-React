@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaUserCheck, FaUserTimes } from "react-icons/fa";
 
-function AdminLog() {
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+function AdminLog() {    
     const [users, setUsers] = useState([]);
     // added these to update State to Manage Modal and History @Nida
     const [selectedUser, setSelectedUser] = useState(null);
@@ -49,7 +51,7 @@ function AdminLog() {
       
 
     const fetchUsers = async () => {
-        fetch("https://localhost:7281/api/User") 
+        fetch(`${API_BASE_URL}/api/User`) 
             .then(response => response.json())
             .then(data => setUsers(data))
             .catch(error => console.error("Error fetching users:", error));
@@ -57,7 +59,7 @@ function AdminLog() {
 
     const fetchPrayerGuidance = async () => {
         try {
-            const response = await fetch("https://localhost:7281/api/PrayerGuidances", {
+            const response = await fetch(`${API_BASE_URL}/api/PrayerGuidances`, {
                 method: "GET",
             });
 
@@ -81,7 +83,7 @@ function AdminLog() {
     
 
     const viewPrayerHistory = (userId) => { 
-        fetch(`https://localhost:7281/api/PrayerRecords/user/${userId}`)
+        fetch(`${API_BASE_URL}/api/PrayerRecords/user/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     // Handle error status with optional message
@@ -127,7 +129,7 @@ function AdminLog() {
     
 
     const activateUser = (userId) => {
-        fetch(`https://localhost:7281/api/User/activate/${userId}`, {
+        fetch(`${API_BASE_URL}/api/User/activate/${userId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" }
         })
@@ -143,7 +145,7 @@ function AdminLog() {
     };
 
     const deactivateUser = (userId) => {
-        fetch(`https://localhost:7281/api/User/deactivate/${userId}`, {
+        fetch(`${API_BASE_URL}/api/User/deactivate/${userId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
         })
@@ -163,7 +165,7 @@ function AdminLog() {
     const handleDelete1 = async (id) => {
         if (window.confirm("Are you sure you want to delete this prayer guidance?")) {
           try {
-            const response = await fetch(`https://localhost:7281/api/PrayerGuidances/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/PrayerGuidances/${id}`, {
               method: 'DELETE',
             });
             if (response.ok) {
@@ -181,7 +183,7 @@ function AdminLog() {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this prayer guidance?")) {
           try {
-            const response = await fetch(`https://localhost:7281/api/PrayerGuidances/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/PrayerGuidances/${id}`, {
               method: 'DELETE',
             });
       
@@ -209,7 +211,7 @@ function AdminLog() {
     const handleAddGuidance = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('https://localhost:7281/api/PrayerGuidances', {
+        const response = await fetch(`${API_BASE_URL}/api/PrayerGuidances`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

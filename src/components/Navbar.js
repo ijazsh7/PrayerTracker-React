@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPray } from '@fortawesome/free-solid-svg-icons';
 
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   useEffect(() => {
     const fetchUserSession = async () => {
       try {
-        const response = await fetch("https://localhost:7281/api/Auth/usersession", {
+        const response = await fetch(`${API_BASE_URL}/api/Auth/usersession`, {
           method: "GET",
           credentials: "include",
         });
@@ -41,7 +43,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   
   const handleLogout = async () => {
     try {
-      const response = await fetch("https://localhost:7281/api/Auth/logout", {
+      const response = await fetch(`${API_BASE_URL}/api/Auth/logout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

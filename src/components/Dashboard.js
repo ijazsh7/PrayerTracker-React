@@ -9,6 +9,7 @@ import {
 
 import PrayerSummaryTable from './PrayerSummaryTable';
 
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -25,7 +26,7 @@ const Dashboard = () => {
 
     // Function that fetches session info from the API
     const fetchUserSession = (setUserId) => {
-        fetch("https://localhost:7281/api/Auth/usersession", {
+        fetch(`${API_BASE_URL}/api/Auth/usersession`, {
             credentials: "include" // Important: this sends cookies to identify the session
         })
             .then(response => {
@@ -58,7 +59,7 @@ const Dashboard = () => {
             { name: "Isha", status: "Pending" }
         ];
     
-        fetch(`https://localhost:7281/api/PrayerRecords/daily/${userId}`)
+        fetch(`${API_BASE_URL}/api/PrayerRecords/daily/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Failed to fetch prayer status");
@@ -104,7 +105,7 @@ const Dashboard = () => {
     
         const prayerId = prayerIdMap[prayerName];
     
-        fetch("https://localhost:7281/api/PrayerRecords/markprayer", {
+        fetch(`${API_BASE_URL}/api/PrayerRecords/markprayer`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

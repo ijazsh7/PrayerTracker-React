@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Login = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +14,7 @@ const Login = ({ setIsLoggedIn }) => {
   // Check if the user is already logged in.
   useEffect(() => {
     const checkUserSession = () => {
-      fetch("https://localhost:7281/api/Auth/usersession", {
+      fetch(`${API_BASE_URL}/api/Auth/usersession`, {
         method: "GET",
         credentials: "include"
       })
@@ -56,7 +58,7 @@ const Login = ({ setIsLoggedIn }) => {
     }
 
     // Call .NET web API to log in after validation
-    fetch("https://localhost:7281/api/Auth/login", {
+    fetch(`${API_BASE_URL}/api/Auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", // IMPORTANT: sends cookies
