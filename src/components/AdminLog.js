@@ -51,7 +51,7 @@ function AdminLog() {
       
 
     const fetchUsers = async () => {
-        fetch(`${API_BASE_URL}/api/User`) 
+        fetch(`${API_BASE_URL}/api/Users`) 
             .then(response => response.json())
             .then(data => setUsers(data))
             .catch(error => console.error("Error fetching users:", error));
