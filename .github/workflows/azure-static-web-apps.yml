@@ -3,14 +3,16 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - main  # Replace with your default branch if different
+      - main  # Replace if your default branch is different
 
 jobs:
-  build_and_deploy_job:
+  build_windows:
     runs-on: windows-latest
-    name: Build and Deploy React App to Azure Static Web Apps
+    name: Build React App on Windows
+    outputs:
+      build-path: ${{ steps.build.outputs.build-path }}
     steps:
-      # 1️⃣ Checkout your code
+      # 1️⃣ Checkout code
       - uses: actions/checkout@v3
 
       # 2️⃣ Setup Node.js
@@ -19,20 +21,30 @@ jobs:
         with:
           node-version: '20'
 
-      # 3️⃣ Install dependencies and build React app (ignore ESLint warnings)
-      - name: Build React app
+      # 3️⃣ Install dependencies and build
+      - name: Build React App
+        id: build
         run: |
           npm install
-          set "CI=false" && npm run build
-        shell: pwsh
+          set CI=false
+          npm run build
+          echo "::set-output name=build-path::$(pwd)/build"
 
-      # 4️⃣ Deploy to Azure Static Web App
+  deploy_linux:
+    needs: build_windows
+    runs-on: ubuntu-latest
+    name: Deploy to Azure Static Web Apps
+    steps:
+      # 1️⃣ Checkout code
+      - uses: actions/checkout@v3
+
+      # 2️⃣ Deploy using Azure Static Web Apps Action
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"        
-          api_location: ""         
-          output_location: "build" 
+          app_location: "/"        # Root of React app
+          api_location: ""         # Leave empty if no backend
+          output_location: "build" # Build folder from Windows job
