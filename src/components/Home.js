@@ -73,7 +73,7 @@ const Home = () => {
             {/* Interface section */}
             <section className="interface">
                 <h1>Welcome to Prayer Tracker</h1>
-                <p>Track your daily prayers and manage missed (Qaza) prayers effortlessly.</p>
+                <p>Track your daily prayers and manage missed (Qaza) prayers effortlessly. API_BASE_URL={API_BASE_URL}=</p>
             </section>
 
             {/* How It Works Section */}
