@@ -7,7 +7,7 @@ const Login = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [userId, setUserId] = useState(null);
+  const [, setUserId] = useState(null);
   const navigate = useNavigate();
 
 
@@ -43,8 +43,8 @@ const Login = ({ setIsLoggedIn }) => {
     };
 
     checkUserSession(); // Call session check on mount
-  },
-  []); // ✅ Only once on mount 
+  },  
+  [navigate, setIsLoggedIn]); // ✅ Only once on mount 
   //[setIsLoggedIn, navigate]); // Dependencies to avoid unnecessary re-runs
 
   // Handle form submission

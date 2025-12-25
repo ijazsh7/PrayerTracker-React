@@ -162,24 +162,7 @@ function AdminLog() {
         .catch(error => console.error("Error updating user status:", error));
     };
       
-    const handleDelete1 = async (id) => {
-        if (window.confirm("Are you sure you want to delete this prayer guidance?")) {
-          try {
-            const response = await fetch(`${API_BASE_URL}/api/PrayerGuidances/${id}`, {
-              method: 'DELETE',
-            });
-            if (response.ok) {
-              setPrayerGuidanceList(prev => prev.filter(item => item.id !== id));
-            } else {
-              throw new Error("Failed to delete");
-            }
-          } catch (err) {
-            console.error(err);
-            alert("Delete failed.");
-          }
-        }
-    };
-
+    
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this prayer guidance?")) {
           try {

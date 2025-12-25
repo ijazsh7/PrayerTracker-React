@@ -8,8 +8,8 @@ export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [prayerGuidanceList, setPrayerGuidanceList] = useState([]);
-    const [userId, setUserId] = useState(null);
-    const [userName, setUserName] = useState(null);
+    const [, setUserId] = useState(null);
+    const [, setUserName] = useState(null);
     const [userRole, setUserRole] = useState(null);
 
     const navigate = useNavigate();

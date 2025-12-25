@@ -89,7 +89,7 @@ const Dashboard = () => {
 
 
     const markPrayer = (prayerName, status) => {
-        if (!userId || userId == 0) {
+        if (!userId || userId === 0) {
             console.log("User ID is not defined. Cannot mark prayer.");
             alert("You must be logged in to mark a prayer.");
             return;
