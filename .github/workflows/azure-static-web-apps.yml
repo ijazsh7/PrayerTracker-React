@@ -23,8 +23,7 @@ jobs:
       - name: Build React app
         run: |
           npm install
-          set CI=false
-          npm run build
+          set "CI=false" && npm run build
         shell: pwsh
 
       # 4️⃣ Deploy to Azure Static Web App

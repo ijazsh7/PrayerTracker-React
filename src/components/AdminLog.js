@@ -10,7 +10,7 @@ function AdminLog() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [prayerHistory, setPrayerHistory] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [prayerError, setPrayerError] = useState("");
+    const [, setPrayerError] = useState("");
 
     const [prayerGuidanceList, setPrayerGuidanceList] = useState([]);
 
@@ -29,16 +29,7 @@ function AdminLog() {
         color: '#555',
       };
       
-      const buttonStyleEdit = {
-        marginRight: '10px',
-        padding: '5px 10px',
-        backgroundColor: '#f0ad4e',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-      };
-      
+            
       const buttonStyleDelete = {
         padding: '5px 10px',
         backgroundColor: '#d9534f',
