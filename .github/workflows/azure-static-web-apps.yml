@@ -25,7 +25,8 @@ jobs:
       - name: Build React App
         id: build
         run: |
-          npm install
+          npm install          
+          set REACT_APP_API_BASE_URL=https://prayertrackerwebapi20251222013242-fdezgyc5andabjd4.centralus-01.azurewebsites.net
           set CI=false
           npm run build
           echo "::set-output name=build-path::$(pwd)/build"
