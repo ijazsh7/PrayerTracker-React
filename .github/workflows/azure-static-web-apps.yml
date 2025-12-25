@@ -12,20 +12,22 @@ jobs:
     outputs:
       build-path: ${{ steps.build.outputs.build-path }}
     steps:
-      # 1️⃣ Checkout code
+      # 1️ Checkout code
       - uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
+      # 2️ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          
-      # Set environment variables for the build          
-      - name: Set environment variables
-        run: echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> $GITHUB_ENV
 
-      # 3️⃣ Install dependencies and build
+      # 3️ Inject environment variable dynamically
+      - name: Set REACT_APP_API_BASE_URL - ijaz
+        run: |
+          echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> $GITHUB_ENV
+
+
+      # 4 Install dependencies and build
       - name: Build React App
         id: build
         run: |
