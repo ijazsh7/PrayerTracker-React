@@ -20,6 +20,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+          
+      # Set environment variables for the build          
+      - name: Set environment variables
+        run: echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> $GITHUB_ENV
 
       # 3️⃣ Install dependencies and build
       - name: Build React App
