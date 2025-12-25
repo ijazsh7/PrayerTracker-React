@@ -17,13 +17,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Match your local Node version
+          node-version: '20'
 
-      # 3️⃣ Install dependencies and build React app
+      # 3️⃣ Install dependencies and build React app (ignore ESLint warnings)
       - name: Build React app
         run: |
           npm install
-          npm run build || Write-Host "Build completed with warnings - ignored"
+          set CI=false
+          npm run build
         shell: pwsh
 
       # 4️⃣ Deploy to Azure Static Web App
@@ -33,6 +34,6 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"        # Root of your React project
-          api_location: ""         # Leave empty if no backend
-          output_location: "build" # Folder created by npm run build
+          app_location: "/"        
+          api_location: ""         
+          output_location: "build" 
