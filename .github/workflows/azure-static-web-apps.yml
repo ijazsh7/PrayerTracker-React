@@ -8,54 +8,36 @@ on:
 jobs:
   build_windows:
     runs-on: windows-latest
-    name: Build React App on Windows
+    name: Build and Deploy React App
     steps:
-      # 1️⃣ Checkout code
-      - uses: actions/checkout@v3
+      # 1️⃣ Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
-      - name: Setup Node.js
+      # 2️⃣ Set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # 3️⃣ Inject environment variable for React build
-      - name: Inject API URL
-        run: echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> $GITHUB_ENV
+      # 3️⃣ Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-      # 4️⃣ Install dependencies and build
+      # 4️⃣ Build React app with API URL from secret
       - name: Build React App
-        run: npm install && npm run build
+        run: npm run build
+        env:
+          REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL }}
+          # Make sure this secret is set in GitHub repo settings
 
-      # 5️⃣ Upload build artifact (v4)
-      - name: Upload React build
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-build
-          path: build
-
-  deploy_linux:
-    needs: build_windows
-    runs-on: ubuntu-latest
-    name: Deploy to Azure Static Web Apps
-    steps:
-      # 1️⃣ Checkout code
-      - uses: actions/checkout@v3
-
-      # 2️⃣ Download build artifact (v4)
-      - name: Download React build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: react-build
-          path: build
-
-      # 3️⃣ Deploy to Azure Static Web App
+      # 5️⃣ Deploy to Azure Static Web Apps
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"        # Root of React app
-          api_location: ""         # Leave empty if no backend
-          output_location: "build" # Points to downloaded artifact
+          app_location: "/"        # root of the repo
+          api_location: ""         # leave empty if backend is separate
+          output_location: "build" # points to React build folder
