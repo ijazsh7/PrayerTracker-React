@@ -1,20 +1,33 @@
-  name: Azure Static Web Apps CI/CD
-  
-  on:
-    push:
-      branches:
-        - main  # replace if your default branch is different
-  
-  jobs:
-    deploy-only:
-      runs-on: ubuntu-latest
-      steps:
-        # Deploy pre-built React app (build/ folder) to Azure Static Web Apps
-        - name: Deploy to Azure Static Web App
-          uses: Azure/static-web-apps-deploy@v1
-          with:
-            azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-            repo_token: ${{ secrets.GITHUB_TOKEN }}
-            action: "upload"
-            app_location: "build"   # POINT DIRECTLY TO BUILD FOLDER
-            api_location: ""        # no Azure Functions
+name: Deploy React Static App (Deploy Only)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Azure Static Web Apps
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository (REQUIRED)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Optional: Debug workspace (remove after first success)
+      - name: Verify build folder exists
+        run: |
+          echo "Workspace contents:"
+          ls -la
+          echo "Build folder contents:"
+          ls -la build
+
+      # 3️⃣ Deploy pre-built React app
+      - name: Deploy to Azure Static Web App
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          action: upload
+          app_location: build
+          api_location: ""
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
