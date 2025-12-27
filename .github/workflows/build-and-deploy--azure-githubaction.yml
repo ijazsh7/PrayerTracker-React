@@ -1,0 +1,57 @@
+name: Azure Static Web Apps CI/CD - build-and-deploy-both
+
+on: []   # No triggers at all - ijaz (this is just a back of the build-and-deploy workflow - later if needed, will provide the trigger details)
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest   # Must be Linux for Azure SWA deploy
+
+    steps:
+      # 1️⃣ Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.10.0'  # Required for env-cmd or modern builds
+
+      # 3️⃣ Clean previous build
+      - name: Clean previous build
+        run: rm -rf build/
+
+      # 4️⃣ Verify API URL secret exists
+      - name: Verify API URL secret
+        run: |
+          if [ -z "$REACT_APP_API_BASE_URL" ]; then
+            echo "REACT_APP_API_BASE_URL is NOT set"
+            exit 1
+          else
+            echo "✅ REACT_APP_API_BASE_URL is set"
+          fi
+        env:
+          REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL }}
+
+      # 5️⃣ Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 6️⃣ Build React app with API URL injected
+      - name: Build React App
+        run: npm run build
+        env:
+          REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL }}
+
+      # 7️⃣ Deploy to Azure Static Web App
+      #Using the Azure/static-web-apps-deploy@v1 action (Note: this is a Docker-based (container) GitHub Action.Container actions ONLY run on Linux runners, not Windows or macOS)
+
+      - name: Deploy to Azure Static Web App
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/"        # root of the repo
+          api_location: ""         # leave empty since API is separate
+          output_location: "build" # React build output
